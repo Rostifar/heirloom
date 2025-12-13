@@ -2,6 +2,8 @@
 
 Heirloom is a terminal-based pomodoro timer built using the Ink framework.
 
+**Platform Support:** macOS only. Notifications use native macOS AppleScript (`osascript`).
+
 ## Sessions
 A working session can be started using the `heirloom start [-t] [-d]` command:
 - `-t`: number of minutes to focus for.
