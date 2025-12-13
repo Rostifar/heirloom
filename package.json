@@ -1,0 +1,45 @@
+{
+  "name": "heirloom",
+  "version": "0.1.0",
+  "description": "Terminal-based pomodoro timer",
+  "type": "module",
+  "bin": {
+    "heirloom": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/cli.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "pomodoro",
+    "timer",
+    "cli",
+    "productivity",
+    "terminal"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "date-fns": "^4.1.0",
+    "ink": "^5.0.1",
+    "meow": "^13.2.0",
+    "node-notifier": "^10.0.1",
+    "react": "^18.3.1",
+    "uuid": "^11.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@types/node-notifier": "^8.0.5",
+    "@types/react": "^18.3.12",
+    "@types/uuid": "^10.0.0",
+    "typescript": "^5.7.2"
+  }
+}
