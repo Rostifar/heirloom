@@ -19,4 +19,5 @@ export interface SessionStats {
 	interruptedSessions: number;
 	successRate: number;
 	totalMinutes: number;
+	lastCalendarDayMinutes: number;
 }

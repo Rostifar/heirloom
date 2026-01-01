@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
 import { Text, Box } from 'ink';
 import { loadSessions } from '../lib/storage.js';
-import { getSessionStats } from '../lib/statistics.js';
+import { getSessionStats, getDailyStats } from '../lib/statistics.js';
 import { format } from 'date-fns';
 
 export const HistoryCommand: React.FC = () => {
 	const sessions = loadSessions();
 	const stats = getSessionStats(sessions);
+	const dailyStats = getDailyStats(sessions);
 
 	useEffect(() => {
 		// Exit after displaying history
@@ -35,8 +36,27 @@ export const HistoryCommand: React.FC = () => {
 	return (
 		<Box flexDirection="column" padding={1}>
 			<Text bold underline>
-				30-Day Statistics
+				Daily Statistics
 			</Text>
+			<Box marginTop={1} flexDirection="column">
+				<Text>
+					Success Rate: <Text color="green" bold>{dailyStats.successRate}%</Text>
+				</Text>
+				<Text>Total Sessions: {dailyStats.totalSessions}</Text>
+				<Text>
+					Completed: <Text color="green">{dailyStats.completedSessions}</Text>
+				</Text>
+				<Text>
+					Interrupted: <Text color="yellow">{dailyStats.interruptedSessions}</Text>
+				</Text>
+				<Text>Total Focus Time: {dailyStats.totalMinutes} minutes</Text>
+			</Box>
+
+			<Box marginTop={2}>
+				<Text bold underline>
+					30-Day Statistics
+				</Text>
+			</Box>
 			<Box marginTop={1} flexDirection="column">
 				<Text>
 					Success Rate: <Text color="green" bold>{stats.successRate}%</Text>
