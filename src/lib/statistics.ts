@@ -52,6 +52,33 @@ export function getDailyStats(sessions: Session[]): SessionStats {
 	};
 }
 
+export interface DailyFocusData {
+	date: Date;
+	minutes: number;
+}
+
+export function getLast30DaysFocusData(sessions: Session[]): DailyFocusData[] {
+	const result: DailyFocusData[] = [];
+	const today = new Date();
+
+	for (let i = 29; i >= 0; i--) {
+		const date = subDays(today, i);
+		const dayStart = startOfDay(date);
+		const dayEnd = endOfDay(date);
+
+		const dayMinutes = sessions
+			.filter(s => {
+				const sessionStart = new Date(s.startTime);
+				return isWithinInterval(sessionStart, { start: dayStart, end: dayEnd }) && s.status !== 'active';
+			})
+			.reduce((sum, s) => sum + (s.actualDuration || 0), 0);
+
+		result.push({ date, minutes: dayMinutes });
+	}
+
+	return result;
+}
+
 export function getSessionStats(sessions: Session[]): SessionStats {
 	const thirtyDaysAgo = subDays(new Date(), 30);
 	const recentSessions = sessions.filter(
